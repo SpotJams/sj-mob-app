@@ -43,8 +43,9 @@ export ANDROID_HOME=$(dirname $(dirname $(which android)))
 
 rm -rf $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/*
 
-CROSSWALK_DIR=$(basename $(find $SPOTJAMS_DIR -maxdepth 1 -name 'crosswalk-cordova-*-arm'))
-cp -r $SPOTJAMS_DIR/$CROSSWALK_DIR/framework/* $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/
+CROSSWALK_DIR="$SPOTJAMS_DIR/$(basename $(find $SPOTJAMS_DIR -maxdepth 1 -name 'crosswalk-cordova-*-arm'))"
+echo "CROSSWALK_DIR = $CROSSWALK_DIR"
+cp -r $CROSSWALK_DIR/framework/* $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/
 cp $CROSSWALK_DIR/VERSION $SPOTJAMS_DIR/sj-mob-app/platforms/android/
 
 cd $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/
