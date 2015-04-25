@@ -48,6 +48,13 @@ CROSSWALK_DIR="$SPOTJAMS_DIR/$(basename $(find $SPOTJAMS_DIR -maxdepth 1 -name '
 cp -r $CROSSWALK_DIR/framework/* $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/
 cp $CROSSWALK_DIR/VERSION $SPOTJAMS_DIR/sj-mob-app/platforms/android/
 
+sed -i -e 's/MainActivity/SpotJams/' $SPOTJAMS_DIR/sj-mob-app/platforms/android/AndroidManifest.xml
+sed -i -e 's/MainActivity/SpotJams/' $SPOTJAMS_DIR/sj-mob-app/platforms/android/build.xml
+
+mv $SPOTJAMS_DIR/sj-mob-app/platforms/android/src/com/spotjams/app/MainActivity.java $SPOTJAMS_DIR/sj-mob-app/platforms/android/src/com/spotjams/app/SpotJams.java
+
+sed -i -e 's/MainActivity/SpotJams/' $SPOTJAMS_DIR/sj-mob-app/platforms/android/src/com/spotjams/app/SpotJams.java
+
 cd $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/
 
 android update project -p .
