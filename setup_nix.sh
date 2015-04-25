@@ -40,15 +40,17 @@ cordova plugin add de.neofonie.cordova.plugin.nativeaudio
 
 # Import crosswalk tolls
 export ANDROID_HOME=$(dirname $(dirname $(which android)))
+export ANDROID_BULID="ant"
 
 rm -rf $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/*
 
 CROSSWALK_DIR="$SPOTJAMS_DIR/$(basename $(find $SPOTJAMS_DIR -maxdepth 1 -name 'crosswalk-cordova-*-arm'))"
-echo "CROSSWALK_DIR = $CROSSWALK_DIR"
 cp -r $CROSSWALK_DIR/framework/* $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/
 cp $CROSSWALK_DIR/VERSION $SPOTJAMS_DIR/sj-mob-app/platforms/android/
 
 cd $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/
+
+android update project -p .
 
 ant debug
 
