@@ -44,6 +44,10 @@ cordova plugin add org.apache.cordova.file-transfer
 cordova plugin add org.apache.cordova.console
 cordova plugin add de.neofonie.cordova.plugin.nativeaudio
 
+####  TODO  #####
+#  http://stackoverflow.com/a/29873742/2366390
+
+
 # Add the android platform for cordova
 cordova platform add android
 
