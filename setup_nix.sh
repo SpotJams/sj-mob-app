@@ -62,6 +62,9 @@ sed -i -e 's/MainActivity/SpotJams/' -e 's#</manifest>##' $SPOTJAMS_DIR/sj-mob-a
 
 # this fixes a permission issue that is missing in the default manifest file
 # removes the ending t
+
+# TODO  !!!  only do if "ACCESS_NETWORK_STATE" is not present in file
+
 sed -i -e 's#</manifest>##' $SPOTJAMS_DIR/sj-mob-app/platforms/android/AndroidManifest.xml
 (
   echo '    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />'
