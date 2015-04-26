@@ -23,14 +23,15 @@ if [[ ! -d www/ ]]; then
   fi
   ln -s ../sj-www-app/ www
 
-  # add bower dependencies for www code
-  if [[ ! -d www/vendor/bower_components ]]; then
-    cd www
-    bower update
-    cd ..
-  fi
 fi
 
+# add bower dependencies for www code
+if [[ ! -d www/vendor/bower_components ]]; then
+  echo "adding bower deps"
+  cd www/vendor
+  bower update
+  cd ../..
+fi
 
 # Add plugins to cordova
 cordova plugin add ../cordova-plugins/cordova-plugin-media --link
