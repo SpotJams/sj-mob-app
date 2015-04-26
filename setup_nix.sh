@@ -22,10 +22,15 @@ if [[ ! -d www/ ]]; then
     exit 2
   fi
   ln -s ../sj-www-app/ www
+
+  # add bower dependencies for www code
+  if [[ ! -d www/vendor/bower_components ]]; then
+    cd www
+    bower update
+    cd ..
+  fi
 fi
 
-# Add the android platform for cordova
-cordova platform add android
 
 # Add plugins to cordova
 cordova plugin add ../cordova-plugins/cordova-plugin-media --link
@@ -38,6 +43,9 @@ cordova plugin add org.apache.cordova.file-transfer
 cordova plugin add org.apache.cordova.console
 cordova plugin add de.neofonie.cordova.plugin.nativeaudio
 
+# Add the android platform for cordova
+cordova platform add android
+
 # Import crosswalk tolls
 export ANDROID_HOME=$(dirname $(dirname $(which android)))
 export ANDROID_BULID="ant"
@@ -48,8 +56,17 @@ CROSSWALK_DIR="$SPOTJAMS_DIR/$(basename $(find $SPOTJAMS_DIR -maxdepth 1 -name '
 cp -r $CROSSWALK_DIR/framework/* $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/
 cp $CROSSWALK_DIR/VERSION $SPOTJAMS_DIR/sj-mob-app/platforms/android/
 
-sed -i -e 's/MainActivity/SpotJams/' $SPOTJAMS_DIR/sj-mob-app/platforms/android/AndroidManifest.xml
 sed -i -e 's/MainActivity/SpotJams/' $SPOTJAMS_DIR/sj-mob-app/platforms/android/build.xml
+sed -i -e 's/MainActivity/SpotJams/' -e 's#</manifest>##' $SPOTJAMS_DIR/sj-mob-app/platforms/android/AndroidManifest.xml
+
+# this fixes a permission issue that is missing in the default manifest file
+# removes the ending t
+sed -i -e 's#</manifest>##' $SPOTJAMS_DIR/sj-mob-app/platforms/android/AndroidManifest.xml
+(
+  echo '    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />'
+  echo '    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />'
+  echo '</manifest>'
+) >> $SPOTJAMS_DIR/sj-mob-app/platforms/android/AndroidManifest.xml
 
 mv $SPOTJAMS_DIR/sj-mob-app/platforms/android/src/com/spotjams/app/MainActivity.java $SPOTJAMS_DIR/sj-mob-app/platforms/android/src/com/spotjams/app/SpotJams.java
 
@@ -57,13 +74,14 @@ sed -i -e 's/MainActivity/SpotJams/' $SPOTJAMS_DIR/sj-mob-app/platforms/android/
 
 cd $SPOTJAMS_DIR/sj-mob-app/platforms/android/CordovaLib/
 
-android update project -p .
+android update project --subprojects --path . --target "android-21"
 
 ant debug
 
 rm $SPOTJAMS_DIR/sj-mob-app/platforms/android/build.xml
 
 cd $SPOTJAMS_DIR/sj-mob-app/platforms/android
-android update project --subprojects --path . --target "android-21"
 cd $SPOTJAMS_DIR/sj-mob-app
 cordova build android
+
+

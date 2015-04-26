@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.spotjams.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    
+
     <name>SpotJams</name>
     <description>humans together for music</description>
 	<author email="devs@spotjams.com" href="http://spotjams.com">
         SpotJams Team
     </author>
-    
+
     <content src="index.html" />
-	
+
 	<access origin="http://localhost"/>
 	<access origin="http://localhost:9090"/>
 	<access origin="http://spotjams.com"/>
@@ -22,7 +22,7 @@
 	<access origin="https://maps.gstatic.com"/>
 	<access origin="https://storage.googleapis.com"/>
 	<access origin="https://www.google-analytics.com"/>
-	
+
 	<icon platform="android" src="www/img/spotjams-logo-36x36.png" density="ldpi" width="36" height="36"/>
 	<icon platform="android" src="www/img/spotjams-logo-48x48.png" density="mdpi" width="48" height="48"/>
 	<icon platform="android" src="www/img/spotjams-logo-72x72.png" density="hdpi" width="72" height="72"/>
@@ -34,5 +34,5 @@
 
 
 	<preference name="debuggable" value="false"/>
-	
+
 </widget>
