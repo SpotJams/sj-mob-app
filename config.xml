@@ -1,20 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.spotjams.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
 
-    <name>SpotJams</name>
-    <description>humans together for music</description>
-	<author email="devs@spotjams.com" href="http://spotjams.com">
+  <name>SpotJams</name>
+  <description>humans together for music</description>
+
+  <author email="devs@spotjams.com" href="http://spotjams.com">
         SpotJams Team
-    </author>
+  </author>
 
-    <content src="index.html" />
+  <content src="index.html" />
+  <preference name="debuggable" value="false"/>
 
-	<access origin="http://localhost"/>
-	<access origin="http://localhost:9090"/>
-	<access origin="http://spotjams.com"/>
-	<access origin="http://spotjams.com:9090"/>
-	<access origin="https://spotjams.com"/>
-	<access origin="https://spotjams.com:9090"/>
+
+	<!-- <access origin="http://localhost"/>
+	<access origin="http://localhost:9090"/> -->
+	<access origin="http://*.spotjams.com"/>
+	<access origin="https://*.spotjams.com"/>
 
 	<access origin="http://spotjams-api.appspot.com"/>
 
@@ -22,6 +23,7 @@
 	<access origin="https://maps.gstatic.com"/>
 	<access origin="https://storage.googleapis.com"/>
 	<access origin="https://www.google-analytics.com"/>
+
 
 	<icon platform="android" src="www/img/spotjams-logo-36x36.png" density="ldpi" width="36" height="36"/>
 	<icon platform="android" src="www/img/spotjams-logo-48x48.png" density="mdpi" width="48" height="48"/>
@@ -32,7 +34,20 @@
 	<preference name="android-targetSdkVersion" value="21"/>
 	<preference name="android-installLocation" value="auto"/>
 
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+  <allow-intent href="tel:*" />
+  <allow-intent href="sms:*" />
+  <allow-intent href="mailto:*" />
+  <allow-intent href="geo:*" />
 
-	<preference name="debuggable" value="false"/>
+  <platform name="android">
+      <allow-intent href="market:*" />
+  </platform>
+  <platform name="ios">
+      <preference name="BackupWebStorage" value="none"/>
+      <allow-intent href="itms:*" />
+      <allow-intent href="itms-apps:*" />
+  </platform>
 
 </widget>

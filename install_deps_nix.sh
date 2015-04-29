@@ -2,7 +2,7 @@
 
 # Set this veriable to the location of the spotjams directory, use full path
 # since the script needs to be run as root (i.e. avoid using $HOME)
-SPOTJAMS_DIR=/home/jbidness/spotjams
+SPOTJAMS_DIR=$HOME/spotjams
 
 if [[ $EUID -ne 0 ]]; then
   echo "You must run this script as root!"
@@ -26,6 +26,13 @@ fi
 # Install plugman (globally) if it isn't already
 if ! npm ls -g plugman >/dev/null ; then
   npm install -g plugman
+else
+  echo "plugman found, skipping installation"
+fi
+
+# Install bower (globally) if it isn't already
+if ! npm ls -g bower >/dev/null ; then
+  npm install -g bower
 else
   echo "plugman found, skipping installation"
 fi
