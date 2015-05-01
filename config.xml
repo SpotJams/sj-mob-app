@@ -19,8 +19,8 @@
 
 	<access origin="http://spotjams-api.appspot.com"/>
 
-	<access origin="https://maps.googleapis.com"/>
-	<access origin="https://maps.gstatic.com"/>
+	<access origin="https://*.googleapis.com"/>
+	<access origin="https://*.gstatic.com"/>
 	<access origin="https://storage.googleapis.com"/>
 	<access origin="https://www.google-analytics.com"/>
 

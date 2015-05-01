@@ -21,7 +21,7 @@ if [[ ! -d www/ ]]; then
     echo "check out the sj-www-app git repository into $SPOTJAMS_DIR"
     exit 2
   fi
-  ln -s ../sj-www-app/ www
+  ln -s ../sj-www-app/www www
 
 fi
 
